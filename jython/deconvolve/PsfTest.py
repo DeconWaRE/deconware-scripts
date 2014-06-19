@@ -9,18 +9,21 @@ from jarray import zeros
 
 # size in pixels
 size=zeros(3,'i')
-size[0]=100
-size[1]=100
-size[2]=50
+xySize=100
+zSize=50
 
-# spacing in microns
+# spacing in nanos
 spacing=zeros(3,'f')
 spacing[0]=100
 spacing[1]=100
 spacing[2]=300
 
-# emission wavelenth
-EMW= 500
+# emission wavelenth in nanos
+# note: if the emission wavelength is an array it will generate an psf for each channel
+emw= zeros(3,'f')
+emw[0]=400
+emw[1]=500
+emw[2]=600
 
 # numerical aperture
 NA=1.4
@@ -34,7 +37,7 @@ RI_specimen_actual=1.51
 # depth below coverslip in microns
 depth=10
 
-psf=ops.run("psf", size, spacing, EMW, NA, RI_lens_actual, RI_specimen_actual, depth)
+psf=ops.run("psf", xySize, zSize, spacing, emw, NA, RI_lens_actual, RI_specimen_actual, depth)
 display.createDisplay("convolved",  data.create(psf));
 
 
