@@ -8,7 +8,6 @@ from net.imglib2.meta import Axes
 from jarray import zeros
 
 # size in pixels
-size=zeros(3,'i')
 xySize=100
 zSize=50
 
@@ -38,6 +37,8 @@ RI_specimen_actual=1.51
 depth=10
 
 psf=ops.run("psf", xySize, zSize, spacing, emw, NA, RI_lens_actual, RI_specimen_actual, depth)
-display.createDisplay("convolved",  data.create(psf));
+display.createDisplay("convolved",  data.create(psf))
+
+
 
 

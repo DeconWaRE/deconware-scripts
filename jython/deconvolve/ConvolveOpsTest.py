@@ -17,9 +17,11 @@ display.createDisplay(image.getName(), image);
 psf=data.open(directory+psfName)
 display.createDisplay(psf.getName(), psf);
 
+"""
 # normalize the psf
 ops.run("normalizesum", psf.getImgPlus())
 
 # convolve
 convolved=ops.run("Convolution", image.getImgPlus(), psf.getImgPlus())
 display.createDisplay("convolved",  data.create(convolved));
+"""
