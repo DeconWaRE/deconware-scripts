@@ -39,8 +39,11 @@ display.createDisplay("psf",  data.create(psf));
 extended = ops.run("extend", None, phantom, 10, 20, BoundaryType.ZERO, FFTTarget.MINES_SPEED)
 display.createDisplay("extended",  data.create(extended));
 
+extendedPsf = ops.run("extend", None, psf, 10, 20, BoundaryType.ZERO, FFTTarget.MINES_SPEED)
+display.createDisplay("extended psf",  data.create(extendedPsf));
+
 # convolve
-#convolved=ops.run("convolution", phantom, psf)
-#display.createDisplay("convolved",  data.create(convolved));
+convolved=ops.run("frequency", extended, extendedPsf)
+display.createDisplay("convolved",  data.create(convolved));
 
 
