@@ -7,22 +7,23 @@ import sys
 
 from com.deconware.algorithms.dim.ExtendImageUtility import BoundaryType
 from com.deconware.algorithms.fft.SimpleFFTFactory import FFTTarget
+from com.deconware.ops.fft import ConvolutionRaiRai
 
 jythondir="/home/bnorthan/Brian2014/Projects/deconware2/deconware-scripts/jython/"
 
 phantomdir=jythondir+"phantom/"
-psfdir=jythondir+"psf"
+psfdir=jythondir+"psf/"
 
 sys.path.append(phantomdir)
 sys.path.append(psfdir)
 
 import MultiChannelPhantom
 reload(MultiChannelPhantom)
-import Psf
-reload(Psf)
+#import CreatePsf
+#reload(CreatePsf)
 
 from MultiChannelPhantom import MakeMultiChannelPhantom
-from Psf import Psf
+#from CreatePsf import CreatePsf
 
 size=[128, 128, 64, 3]
 
@@ -43,7 +44,7 @@ extendedPsf = ops.run("extend", None, psf, 10, 20, BoundaryType.ZERO, FFTTarget.
 display.createDisplay("extended psf",  data.create(extendedPsf));
 
 # convolve
-convolved=ops.run("frequency", extended, extendedPsf)
+convolved=ops.run("frequencyfilter", extended, extendedPsf, ConvolutionRaiRai())
 display.createDisplay("convolved",  data.create(convolved));
 
 
