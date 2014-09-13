@@ -39,14 +39,18 @@ def MakeMultiChannelPhantom (ops, size):
 	#ops.run("addassymetricspherel",  image, location, 1.0, radius1, radius2)
 
  	shapes=Add3DShapes(ops, size)
-	
-	for d in range(0,numChannels):
-		hyperSlice= Views.hyperSlice(image, 3, d)
-		#shapes.add3To1Sphere(hyperSlice, location, 1.0)
-		#shapes.addZEdgeSphere(hyperSlice, 1.0, 10)
-		#shapes.addCenterSphere(hyperSlice, 1.0, 10)
-		shapes.addRandomPointsInROI(hyperSlice, 1.0, 20)
-		location[0]+=10
+
+ 	def AddShapes(hyperSlice):
+ 		#shapes.addRandomPointsInROI(hyperSlice, 100.0, 20)
+		shapes.addCenterSphere(hyperSlice, 5.0, 20)
+
+	if (numChannels>1):
+		for d in range(0,numChannels):
+			hyperSlice= Views.hyperSlice(image, 3, d)
+			AddShapes(hyperSlice)
+			location[0]+=10
+	else:
+		AddShapes(image)
 
 	return imgPlus
 

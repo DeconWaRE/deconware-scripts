@@ -2,9 +2,8 @@ from jarray import zeros
 from random import randrange
 
 class Add3DShapes(object):
-	def __init__(self, ops, size):
+	def __init__(self, ops):
 		self.ops=ops
-		self.size=size
 	
 	def add3To1Sphere(self, hyperSlice, location, intensity):
 
@@ -21,6 +20,7 @@ class Add3DShapes(object):
 
 	def addCenterSphere(self, hyperSlice, intensity, radius):
 		location=[hyperSlice.dimension(0)/2, hyperSlice.dimension(1)/2, hyperSlice.dimension(2)/2]
+		print location
 		self.ops.run("addsphere", hyperSlice, location, intensity, radius)
 
 	def addRandomPointsInROI(self, hyperSlice, intensity, num):
