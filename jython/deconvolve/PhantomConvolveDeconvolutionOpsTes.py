@@ -99,4 +99,4 @@ deconvolved=ops.create(extendedDimensions, FloatType());
 #ops.run("richardsonlucy", convolved, psf, deconvolved, 2, AccelerationStrategy.MULTIPLICATIVE_VECTOR, ConvolutionStrategy.SEMI_NONCIRCULANT, 50, 60, 70);
 
 ops.run("richardsonlucy", convolved, extendedPsf, deconvolved, 10, AccelerationStrategy.MULTIPLICATIVE_VECTOR, ConvolutionStrategy.CIRCULANT, 128, 128, 64);
-display.createDisplay("deconvolved", data.create(deconvolved))'''
+display.createDisplay("deconvolved", data.create(deconvolved))

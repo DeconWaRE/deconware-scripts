@@ -13,6 +13,8 @@ image2Name="lena_green_32.tif"
 image1=data.open(directory+image1Name)
 display.createDisplay(image1.getName(), image1)
 
+print type(image1)
+'''
 # open second image
 image2=data.open(directory+image2Name)
 display.createDisplay(image2.getName(), image2);
@@ -23,3 +25,4 @@ display.createDisplay(image3.getName(), image3)
 
 #blobs=data.open("http://rsb.info.nih.gov/ij/images/blobs.gif")
 #display.createDisplay(blobs.getName(), blobs)
+'''
