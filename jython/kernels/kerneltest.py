@@ -13,11 +13,16 @@ from jarray import array
 
 from net.imglib2.meta import ImgPlus
 
-# define a local directory to get the images from
-directory="/home/bnorthan/Brian2014/Images/TempForEasyAccess/"
+import os
+import sys
 
-helaCellsName="HelaCellsRedChannelCropped.tif"
-barsName="Bars_32.tif"
+print os.getcwd()
+print sys.argv[0]
+# define a local directory to get the images from
+directory="/home/bnorthan/Brian2012/Round2/deconware2/deconware-scripts/images/"
+
+helaCellsName="helacellsredcropped.tif"
+barsName="Bars.tif"
 
 helaCells=data.open(directory+helaCellsName);
 bars=data.open(directory+barsName);
@@ -26,7 +31,8 @@ display.createDisplay("HelaCells", helaCells);
 
 gaussianKernel =ops.gaussKernel( 2, 5.0);
 gaussianKernel3D =ops.gaussKernel(array([4.0, 4.0, 2.0], 'd'));
-logKernel=ops.logKernel(2, 5.0, None, FloatType(),PlanarImgFactory()) 
+#logKernel=ops.logKernel(2, 3.0, None, FloatType(),PlanarImgFactory()) 
+logKernel=ops.logKernel(2, 3.0) 
 
 display.createDisplay("gausskernel", ImgPlus(gaussianKernel));
 
