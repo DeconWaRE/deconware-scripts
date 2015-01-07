@@ -17,11 +17,15 @@ from ij import IJ
 logKernel=ops.logKernel(2, 1.0);
 
 # create an image for the result
-logFiltered=ops.createImg(PlanarImgFactory(), FloatType(), \ 
-	array([inputData.dimension(0), inputData.dimension(1)], 'l'))
+#logFiltered=ops.createImg(PlanarImgFactory(), FloatType(), \ 
+#	array([inputData.dimension(0), inputData.dimension(1)], 'l'))
+#logFiltered=ops.createImg(ImgPlus(inputData))
 
 # convolve and display
-ops.convolve(logFiltered, inputData, logKernel);
+#ops.convolve(logFiltered, inputData, logKernel);
+
+logFiltered=ops.convolve(inputData, logKernel);
+
 display.createDisplay("log", ImgPlus(logFiltered));
 
 # otsu threshold and display
