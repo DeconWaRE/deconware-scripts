@@ -18,8 +18,9 @@ import sys
 
 print os.getcwd()
 print sys.argv[0]
+
 # define a local directory to get the images from
-directory="/home/bnorthan/Brian2012/Round2/deconware2/deconware-scripts/images/"
+directory="/home/bnorthan/Brian2014/Projects/deconware2/deconware-scripts/images/"
 
 helaCellsName="helacellsredcropped.tif"
 barsName="Bars.tif"
@@ -39,9 +40,9 @@ display.createDisplay("gausskernel", ImgPlus(gaussianKernel));
 dimensions2D=array([helaCells.dimension(0), helaCells.dimension(1)], 'l');
 dimensions3D=array([bars.dimension(0), bars.dimension(1), bars.dimension(2)], 'l');
 
-gaussianFiltered=ops.createImg( PlanarImgFactory(), FloatType(), dimensions2D)
-logFiltered=ops.createImg(PlanarImgFactory(), FloatType(), dimensions2D)
-barsGaussianFiltered=ops.createImg(PlanarImgFactory(), FloatType(), dimensions3D)
+gaussianFiltered=ops.createImg( dimensions2D)
+logFiltered=ops.createImg(FloatType(), PlanarImgFactory(), dimensions2D)
+barsGaussianFiltered=ops.createImg(FloatType(), PlanarImgFactory(), dimensions3D)
 
 ops.convolve(gaussianFiltered, helaCells, gaussianKernel)
 ops.convolve(logFiltered, helaCells, logKernel)

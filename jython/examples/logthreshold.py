@@ -1,12 +1,8 @@
 # @DatasetService data
 # @DisplayService display
-# @IOService io
 # @OpService ops
-# @UIService ui
 # @net.imagej.Dataset inputData
 
-from net.imglib2.img.planar import PlanarImgFactory;
-from net.imglib2.type.numeric.real import FloatType;
 from net.imglib2.meta import ImgPlus
 from net.imglib2.img.display.imagej import ImageJFunctions
 
@@ -14,28 +10,26 @@ from jarray import array
 from ij import IJ
 
 # create a log kernel
-logKernel=ops.logKernel(2, 1.0);
+logKernel=ops.logKernel(inputData.numDimensions(), 1.0);
 
-# create an image for the result
-#logFiltered=ops.createImg(PlanarImgFactory(), FloatType(), \ 
-#	array([inputData.dimension(0), inputData.dimension(1)], 'l'))
-#logFiltered=ops.createImg(ImgPlus(inputData))
-
-# convolve and display
+# create an image for the result and convolve
+#logFiltered=ops.createImg(array([inputData.dimension(0), inputData.dimension(1)], 'l'))
 #ops.convolve(logFiltered, inputData, logKernel);
 
+# or use new convolve that creates the output image
 logFiltered=ops.convolve(inputData, logKernel);
 
+# display log filter result
 display.createDisplay("log", ImgPlus(logFiltered));
 
 # otsu threshold and display
 thresholded = ops.run("otsu", logFiltered)
 display.createDisplay("thresholded", ImgPlus(thresholded));
 
-# convert to imagej1 image plus so we can run analyze particles
+# convert to imagej1 imageplus so we can run analyze particles
 impThresholded=ImageJFunctions.wrap(thresholded, "wrapped")
 
 # convert to mask and analyze particles
 IJ.run(impThresholded, "Convert to Mask", "")
 IJ.run(impThresholded, "Analyze Particles...", "display add");
-IJ.run("Close"); 
+IJ.run("Close"); '''

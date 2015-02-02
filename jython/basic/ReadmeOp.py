@@ -11,13 +11,14 @@ blank = ij.op().createImg(dims)
 #display.createDisplay("blank", ImgPlus(blank));
 ij.ui().show(blank);
 
-'''
 # fill in the image with a sinusoid using a formula
 formula = "10 * (Math.cos(0.3*p[0]) + Math.sin(0.3*p[1]))"
 sinusoid = ij.op().equation(blank, formula)
 
+ij.ui().show(sinusoid);
+
 # add a constant value to an image
-ij.op().add(sinusoid, 13.0)
+'''ij.op().add(sinusoid, 13.0)
 
 # generate a gradient image using a formula
 gradient = ij.op().equation(ij.op().createImg(dims), "p[0]+p[1]")
