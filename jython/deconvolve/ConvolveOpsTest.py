@@ -46,12 +46,9 @@ print thesum.getRealDouble()
 print psfsum.getRealDouble()
 print thesum.getRealDouble()*psfsum.getRealDouble()
 
-
-
-'''
 deconvolved=ops.run("deconvolve", convolved, psf, 10);
 display.createDisplay("deconvolved", ImgPlus(deconvolved));
-
+'''
 
 # normalize the psf
 ops.run("normalizesum", psf.getImgPlus())

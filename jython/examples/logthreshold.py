@@ -23,7 +23,7 @@ logFiltered=ops.convolve(inputData, logKernel);
 display.createDisplay("log", ImgPlus(logFiltered));
 
 # otsu threshold and display
-thresholded = ops.run("otsu", logFiltered)
+thresholded = ops.run("threshold.otsu", logFiltered)
 display.createDisplay("thresholded", ImgPlus(thresholded));
 
 # convert to imagej1 imageplus so we can run analyze particles
