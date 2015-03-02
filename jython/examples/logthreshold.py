@@ -12,10 +12,6 @@ from ij import IJ
 # create a log kernel
 logKernel=ops.logKernel(inputData.numDimensions(), 1.0);
 
-# create an image for the result and convolve
-#logFiltered=ops.createImg(array([inputData.dimension(0), inputData.dimension(1)], 'l'))
-#ops.convolve(logFiltered, inputData, logKernel);
-
 # or use new convolve that creates the output image
 logFiltered=ops.convolve(inputData, logKernel);
 

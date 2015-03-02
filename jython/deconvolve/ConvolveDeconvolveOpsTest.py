@@ -6,11 +6,10 @@
 from net.imglib2.meta import ImgPlus
 from net.imglib2.type.numeric.real import FloatType
 
-
 from jarray import array
 
 # define a local directory to get the images from
-directory="/home/bnorthan/Brian2014/Projects/deconware2/deconware-scripts/images/"
+directory="/home/bnorthan/Brian2012/Round2/deconware2/deconware-scripts/images/"
 
 imageName="Bars72.tif"
 psfName="BornWolf72.tif"
