@@ -1,33 +1,37 @@
-# @DatasetService data
 # @DisplayService display
-# @IOService io
 # @OpService ops
+# @net.imagej.Dataset image
+# @net.imagej.Dataset template
+
+'''
+This example is an 'ops' version of:
+
+http://fiji.sc/ImgLib2_Examples#Example_6c_-_Complex_numbers_and_Fourier_transforms
+
+for which the code and imges can be found
+
+https://github.com/imglib/imglib2-tutorials
+
+'''
 
 from net.imglib2.img.display.imagej import ImageJFunctions;
-from net.imglib2.type.numeric.real import FloatType;
 from net.imglib2.type.numeric.complex import ComplexFloatType;
+from net.imglib2.outofbounds import OutOfBoundsMirrorExpWindowingFactory;
 
 from jarray import array
 
-# define a local directory to get the images from
-directory="/home/bnorthan//Brian2012/Round2/deconware2/imglib2-tutorials/"
+# perform fft of the template
 
-imageName="DrosophilaWing.tif"
-templateName="WingTemplate.tif"
+# basic fft call with no parameters
+#templateFFT=ops.fft(template.getImgPlus())
 
-# open and display the image
-image=data.open(directory+imageName)
-display.createDisplay(image.getName(), image);	
+# alternatively to pass an outofbounds factory we have to pass every parameter.  We want:
+# output='None', input=template, borderSize=10 by 10, fast='True', outOfBoundsFactor=OutOfBoundsMirrorExpWindowingFactory
+templateFFT=ops.fft(None, template.getImgPlus(), array([10, 10], 'l'), True, OutOfBoundsMirrorExpWindowingFactory(0.25));
 
-# open and display the template
-template=data.open(directory+templateName)
-display.createDisplay(template.getName(), template);	
-
-# fft of the template
-templateFFT=ops.fft(template.getImgPlus());
 ImageJFunctions.show(templateFFT).setTitle("fft power spectrum");
 
-# complex invert the kernel
+# complex invert the fft of the template
 c = ComplexFloatType();
 for  t in templateFFT:
 	c.set(t);
@@ -37,6 +41,7 @@ for  t in templateFFT:
 
 # create Img memory for inverse FFT and compute inverse 
 templateInverse=ops.createimg(array([template.dimension(0), template.dimension(1)], 'l'))
+
 ops.ifft(templateInverse, templateFFT)
 display.createDisplay("template inverse", templateInverse)
 
