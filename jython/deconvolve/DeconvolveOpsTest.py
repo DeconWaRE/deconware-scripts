@@ -13,5 +13,6 @@ from jarray import array
 # alternatively we can define an extension size.  Here we set the extension size to be 0 in all dimensions
 # this means the image won't be extended (other then extension that is done internally to reach a fast fft size)
 size=array([0, 0, 0], 'l')
-deconvolved=ops.run("deconvolve", None, image, psf, size, 10);
+#deconvolved=ops.run("rltv", None, image, psf, size, 10, 0.001);
+deconvolved=ops.run("deconvolve.richardsonlucy", None, image, psf, size, 50);
 display.createDisplay("deconvolved", ImgPlus(deconvolved));
