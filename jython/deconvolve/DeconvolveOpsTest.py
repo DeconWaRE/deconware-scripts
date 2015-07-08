@@ -12,7 +12,25 @@ from jarray import array
 
 # alternatively we can define an extension size.  Here we set the extension size to be 0 in all dimensions
 # this means the image won't be extended (other then extension that is done internally to reach a fast fft size)
-size=array([0, 0, 0], 'l')
-#deconvolved=ops.run("rltv", None, image, psf, size, 10, 0.001);
-deconvolved=ops.run("deconvolve.richardsonlucy", None, image, psf, size, 50);
+
+# RLTV default extension non-circulant true
+deconvolved=ops.run("deconvolve.richardsonLucyTV", None, image, psf, None, None, None, None, None, None, None, 20, 0.005, True, True);
+
+# RL default extension non-circulate true
+#deconvolved=ops.run("deconvolve.richardsonLucy", None, image, psf, None, None, None, None, None, None, None, 20, True, True);
+
+#deconvolved=ops.run("deconvolve.richardsonlucy", None, image, psf, None, None, None, None, None, None, None, 2, True, False);
+
+# default extension, non-circulant false
+#deconvolved=ops.run("rltv", None, image, psf, None, 20, 0.005);
+
+# no extension
+#deconvolved=ops.run("rltv", None, image, psf, [0,0,0], 2, 0.005);
+
+# deconvolve with rl
+#deconvolved=ops.run("deconvolve.richardsonlucy", None, image, psf, [0,0,0], 20);
+# turn non-circulant off
+#deconvolved=ops.run("deconvolve.richardsonlucy", None, image, psf, [0,0,0],  None, None, None, None, None, None, 20, False);
+#deconvolved=ops.run("deconvolve.richardsonlucy", None, image, psf, None, 20);
+# show the deconvolved result
 display.createDisplay("deconvolved", ImgPlus(deconvolved));
