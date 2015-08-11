@@ -14,10 +14,13 @@ from jarray import array
 # this means the image won't be extended (other then extension that is done internally to reach a fast fft size)
 
 # RLTV default extension non-circulant true
-deconvolved=ops.run("deconvolve.richardsonLucyTV", None, image, psf, None, None, None, None, None, None, None, 20, 0.005, True, True);
+#deconvolved=ops.run("deconvolve.richardsonLucyTV", None, image, psf, [0,0,0], None, None, None, None, None, None, 20, 0.005, True, True);
+deconvolved=ops.deconvolve().richardsonLucyTV(None, image, psf, [0,0,0], None, None, None, None, None, None, 20, 0.005, True, True);
+
+#deconvolved=ops.deconvolve().richardsonLucy(None, image, psf, [0,0,0], None, None, None, None, None, None, 2, True, True);
 
 # RL default extension non-circulate true
-#deconvolved=ops.run("deconvolve.richardsonLucy", None, image, psf, None, None, None, None, None, None, None, 20, True, True);
+#deconvolved=ops.run("deconvolve.richardsonLucy", None, image, psf, None, None, None, None, None, None, None, 2, True, False);
 
 #deconvolved=ops.run("deconvolve.richardsonlucy", None, image, psf, None, None, None, None, None, None, None, 2, True, False);
 
