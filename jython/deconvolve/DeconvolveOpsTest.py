@@ -15,13 +15,15 @@ from jarray import array
 
 # RLTV default extension non-circulant true
 #deconvolved=ops.run("deconvolve.richardsonLucyTV", None, image, psf, [0,0,0], None, None, None, None, None, None, 20, 0.005, True, True);
-deconvolved=ops.deconvolve().richardsonLucyTV(None, image, psf, [0,0,0], None, None, None, None, None, None, 20, 0.005, True, True);
+#deconvolved=ops.deconvolve().richardsonLucyTV(None, image, psf, [0,0,0], None, None, None, None, None, None, 20, 0.005, True, True)
 
-#deconvolved=ops.deconvolve().richardsonLucy(None, image, psf, [0,0,0], None, None, None, None, None, None, 2, True, True);
+deconvolved=ops.deconvolve().richardsonLucyTV(None, image, psf, [20,20,20], None, \
+ None, None, None, None, None, 20, 0.0005, True, True);
+
+#deconvolved=ops.deconvolve().richardsonLucy(None, image, psf, None, None, None, None, None, None, None, 1, True, False);
 
 # RL default extension non-circulate true
 #deconvolved=ops.run("deconvolve.richardsonLucy", None, image, psf, None, None, None, None, None, None, None, 2, True, False);
-
 #deconvolved=ops.run("deconvolve.richardsonlucy", None, image, psf, None, None, None, None, None, None, None, 2, True, False);
 
 # default extension, non-circulant false
